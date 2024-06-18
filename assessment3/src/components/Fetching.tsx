@@ -1,22 +1,22 @@
 import { useEffect, useState } from "react";
 
-interface User {
+interface Todos {
   id: number;
   name: string;
 }
 
 const Fetching = () => {
-  return (
-    <>
-        const [users, setUsers] = useState<User[]>([]);
+
+
+        const [todos, setTodos] = useState<Todos[]>([])
 //useState to help us handle errors
 
 
   ///Create a function to help us fetch our data
   const fetchUserData = () => {
-    fetch("https://jsonplaceholder.typicode.com/users")
+    fetch("https://jsonplaceholder.typicode.com/todos")
       .then((response) => response.json())
-      .then((data) => setUsers(data))
+      .then((data) => setTodos(data))
   };
 
   ///We need a useEffect for rendering our data once our fetchingFetch component loads, no depenency in the array, no clean up function
@@ -29,15 +29,18 @@ const Fetching = () => {
       <h1 className="text-center">Fetching Data using Fetch</h1>
       <div>
         <ul>
-          {users.map((user) => (
-            <li key={user.id}>{user.name}</li>
+          {todos.map((todo) => (
+            <li key={todo.id}>{todo.name}</li>
           ))}
         </ul>
       </div>
+
+      
     </>
+
+
   );
-    </>
-  )
+  
 }
 
 export default Fetching
